@@ -8,8 +8,13 @@
 	<name>KBlog</name>
 	<url></url>
 	<description>
-  <![CDATA[在此添加应用描述]]>
-  </description>
+        <![CDATA[在此添加应用描述]]>
+    </description>
+  
+    <properties>    
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>    
+    </properties>  
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
