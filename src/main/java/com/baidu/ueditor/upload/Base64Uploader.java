@@ -6,48 +6,49 @@ import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
 
-import java.util.Map;
-
 import org.apache.commons.codec.binary.Base64;
+
+import java.util.Map;
 
 public final class Base64Uploader {
 
-	public static State save(String content, Map<String, Object> conf) {
-		
-		byte[] data = decode(content);
+  public static State save(final String content, final Map<String, Object> conf) {
 
-		long maxSize = ((Long) conf.get("maxSize")).longValue();
+    final byte[] data = decode(content);
 
-		if (!validSize(data, maxSize)) {
-			return new BaseState(false, AppInfo.MAX_SIZE);
-		}
+    final long maxSize = ((Long) conf.get("maxSize")).longValue();
 
-		String suffix = FileType.getSuffix("JPG");
+    if (!validSize(data, maxSize)) {
+      return new BaseState(false, AppInfo.MAX_SIZE);
+    }
 
-		String savePath = PathFormat.parse((String) conf.get("savePath"),
-				(String) conf.get("filename"));
-		
-		savePath = savePath + suffix;
-		//String physicalPath = (String) conf.get("rootPath") + savePath;
-		String physicalPath = PathFormat.format( (String) conf.get("upfilesPhysicalRootPath") + savePath ) ;
+    final String suffix = FileType.getSuffix("JPG");
 
-		State storageState = StorageManager.saveBinaryFile(data, physicalPath);
+    String savePath = PathFormat.parse((String) conf.get("savePath"),
+        (String) conf.get("filename"));
 
-		if (storageState.isSuccess()) {
-			storageState.putInfo("url", PathFormat.format(savePath));
-			storageState.putInfo("type", suffix);
-			storageState.putInfo("original", "");
-		}
+    savePath = savePath + suffix;
+    // String physicalPath = (String) conf.get("rootPath") + savePath;
+    final String physicalPath = PathFormat
+        .format((String) conf.get("upfilesPhysicalRootPath") + savePath);
 
-		return storageState;
-	}
+    final State storageState = StorageManager.saveBinaryFile(data, physicalPath);
 
-	private static byte[] decode(String content) {
-		return Base64.decodeBase64(content.getBytes());
-	}
+    if (storageState.isSuccess()) {
+      storageState.putInfo("url", PathFormat.format(savePath));
+      storageState.putInfo("type", suffix);
+      storageState.putInfo("original", "");
+    }
 
-	private static boolean validSize(byte[] data, long length) {
-		return data.length <= length;
-	}
-	
+    return storageState;
+  }
+
+  private static byte[] decode(final String content) {
+    return Base64.decodeBase64(content.getBytes());
+  }
+
+  private static boolean validSize(final byte[] data, final long length) {
+    return data.length <= length;
+  }
+
 }

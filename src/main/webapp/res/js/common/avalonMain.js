@@ -1,4 +1,4 @@
-var oniuiUrl = "res/vendors/oniui/";
+var oniuiUrl = "res/vendors/avalon/";
 
 avalon.config({
 	baseUrl:"/",
@@ -8,11 +8,11 @@ avalon.config({
 		jquery:'/res/vendors/jquery/jquery-2.1.4',//指定本地文件时，后缀.js可省略
 		
 		//avalon功能组件模块
-		mmRequest:'/res/vendors/avalon/mmRequest',
-		mmHistory:'/res/vendors/avalon/mmHistory',
-		mmPromise:'/res/vendors/avalon/mmPromise',
-		mmRouter:'/res/vendors/avalon/mmRouter',
-		mmState:'/res/vendors/avalon/mmState',
+		mmRequest:'/res/vendors/avalon/mmRequest/mmRequest',
+		mmHistory:'/res/vendors/avalon/mmHistory/mmHistory',
+		mmPromise:'/res/vendors/avalon/mmPromise/mmPromise',
+		mmRouter:'/res/vendors/avalon/mmRouter/mmRouter',
+		mmState:'/res/vendors/avalon/mmState/mmState',
 		//avalon.oniui组件模块
 		carousel : oniuiUrl+"carousel/avalon.carousel",
 		dialog : oniuiUrl+"dialog/avalon.dialog",
@@ -55,6 +55,3 @@ avalon.config({
 });
 
 
-require(["bootstrap","jquery","avalon","domReady!"],function(){
-    avalon.log("基础组件加载完毕 ");
-})

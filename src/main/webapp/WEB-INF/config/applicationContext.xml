@@ -13,7 +13,7 @@
 	<!-- 注意上面的default-autowire="byName"，如果没有这个声明不会被注入 -->
 
 	<description>Spring容器配置</description>
-
+	<import resource="applicationContext-filters.xml" />
 	<!-- <import resource="applicationContextExt.xml" /> -->
 	
 	<!-- 加载外部配置 -->
